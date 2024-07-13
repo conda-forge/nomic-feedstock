@@ -1,5 +1,5 @@
 {% set name = "nomic" %}
-{% set version = "3.0.38" %}
+{% set version = "3.0.39" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/nomic-{{ version }}.tar.gz
-  sha256: fa3b69cc49267899cc2a4046c8cc994f78888dfa9272e1674bd833b077828c50
+  sha256: b50de097487f2470ac8ff4ef08a3b536dd7a330ac9677a0c1b0d07e7b4cb159d
 
 build:
   entry_points:
