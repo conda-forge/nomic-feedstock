@@ -14,15 +14,15 @@ build:
     - nomic=nomic.cli:cli
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
     - setuptools
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - click
     - jsonlines
     - loguru
@@ -44,6 +44,7 @@ test:
     - nomic --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/nomic-ai/nomic
