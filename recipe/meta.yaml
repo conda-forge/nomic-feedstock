@@ -1,5 +1,5 @@
 {% set name = "nomic" %}
-{% set version = "3.5.3" %}
+{% set version = "3.6.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/nomic-{{ version }}.tar.gz
-  sha256: cf5abf9ca0f33e1f5db0221265bd0381a7baa3ec39bda373f0038f6905029e48
+  sha256: c81c31b919c336567394fc1941c9818586c2f8c372b01bee1e5aa742954ebe81
 
 build:
   entry_points:
@@ -22,6 +22,7 @@ requirements:
     - pip
     - setuptools
   run:
+    - jsonschema >=4.23.0,<5
     - python >={{ python_min }}
     - click
     - jsonlines
@@ -30,7 +31,7 @@ requirements:
     - requests
     - numpy
     - pandas
-    - pydantic
+    - pydantic >=2,<3
     - tqdm
     - pyarrow
     - pillow
