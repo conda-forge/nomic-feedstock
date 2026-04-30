@@ -1,0 +1,66 @@
+schema_version: 1
+
+context:
+  name: nomic
+  version: "3.9.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/nomic-${{ version }}.tar.gz
+  sha256: 5be6b2e39ea07cf9db386b663dac792ff6a3d91beccef8eb18820b517cd6c0b6
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - nomic=nomic.cli:cli
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - filetype >=1.2.0,<2
+    - jsonschema >=4.23.0,<5
+    - python >=${{ python_min }}
+    - click
+    - jsonlines
+    - loguru
+    - rich
+    - requests
+    - numpy
+    - pandas
+    - pydantic >=2,<3
+    - tqdm
+    - pyarrow
+    - pillow
+    - pyjwt
+
+tests:
+  - python:
+      imports:
+        - nomic
+      pip_check: true
+      python_version: ${{ python_min }}
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - nomic --help
+
+about:
+  summary: The official Nomic python client.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/nomic-ai/nomic
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
